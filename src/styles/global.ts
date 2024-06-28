@@ -12,4 +12,11 @@ export const globalStyles = globalCss({
     color: '$gray100',
     '-webkit-font-smoothing': 'antialiased',
   },
+
+  'input:-webkit-autofill': {
+    transition: 'background-color transparent !important',
+  },
+  'input:-webkit-autofill:focus': {
+    transition: 'background-color transparent !important',
+  },
 })
