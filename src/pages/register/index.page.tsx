@@ -6,6 +6,8 @@ import { z } from 'zod'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { useEffect } from 'react'
 import { useRouter } from 'next/router'
+import { api } from '@/lib/axios'
+import { AxiosError } from 'axios'
 
 const registerFormSchema = z.object({
   username: z
@@ -33,8 +35,19 @@ export default function Register() {
     resolver: zodResolver(registerFormSchema),
   })
 
-  const handleRegister = (data: RegisterFormSchema) => {
-    console.log(data)
+  const handleRegister = async ({ name, username }: RegisterFormSchema) => {
+    try {
+      await api.post('/users', {
+        username,
+        name,
+      })
+
+      await router.push('/register/connect-calendar')
+    } catch (error) {
+      if (error instanceof AxiosError && error.response?.data?.message) {
+        alert(error.response?.data?.message)
+      }
+    }
   }
 
   useEffect(() => {

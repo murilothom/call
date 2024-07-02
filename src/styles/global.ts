@@ -14,9 +14,9 @@ export const globalStyles = globalCss({
   },
 
   'input:-webkit-autofill': {
-    transition: 'background-color transparent !important',
+    transition: 'background-color 0s 600000s, color 0s 600000s !important',
   },
   'input:-webkit-autofill:focus': {
-    transition: 'background-color transparent !important',
+    transition: 'background-color 0s 600000s, color 0s 600000s !important',
   },
 })
